@@ -1,0 +1,38 @@
+Requirement
+-----------
+
+- install of curl (apt-get install curl ; pacman -S curl ; etc.)
+- an identi.ca account (perhaps would you display a friend ' status ?)
+
+Using identica.sh
+--------------------
+
+- Place this script in the user plugins directory
+- Edit your blog's conf : 
+nb -b /path/to/my/blog/ configure
+- Add this at the end of the conf : 
+# --- Identi.ca plugin settings ---
+#IDENTICA_CMD="curl" # progam used to retrieve identi.ca status 
+#IDENTICA_OPTS="-s" # some options of the IDENTICA_CMD program
+#IDENTICA_URL="http://identi.ca/api/users/show" # url for having the last status
+#IDENTICA_FORMAT="xml" # format used on identi.ca
+#IDENTICA_LINK="http://identi.ca/$IDENTICA_USER"
+IDENTICA_USER="blanko" # your id on identi.ca
+IDENTICA_TITLE="identi.ca status" # title to display on your homepage (or some else)
+- Just change the content of the IDENTICA_USER variable
+- Also the IDENTICA_TITLE, if you want
+- Change your templates/main_index.htm file. For example add this in the menu :
+<div class="sidetitle">
+	$IDENTICA_TITLE
+</div>
+<div class="side">
+	$IDENTICA_BADGE
+</div>
+- Recompile your weblog : 
+nb -b /path/to/my/blog/ update main
+- Enjoy !
+
+Notes
+-----
+
+You can use the script for anything else. Just adapt the script for your use.

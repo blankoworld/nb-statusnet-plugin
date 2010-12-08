@@ -1,0 +1,14 @@
+DONE
+----
+
+- Print last entry of an identi.ca account
+
+TODO
+----
+
+- Add support of group for identi.ca
+- Add possibility to choose the program that give the xml page
+- Give 5 last entries
+- Add a parameter that permit to choose the number of printed entries
+- Verifying that the number given isn't too high (add a max number)
+
