@@ -35,4 +35,6 @@ nb -b /path/to/my/blog/ update main
 Notes
 -----
 
-You can use the script for anything else. Just adapt the script for your use.
+- You can use the script for anything else. Just adapt the script for your use.
+- A copy of this plugin is available at http://git.dossmann.net/?p=nanoblogger/identica_plugin
+

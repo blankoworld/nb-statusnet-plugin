@@ -3,6 +3,8 @@
 ## LICENCE
 
 # Copyright 2009 by Olivier DOSSMANN (alias Blankoworld)
+#
+# A copy of this plugin is available at http://git.dossmann.net/?p=nanoblogger/identica_plugin
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
