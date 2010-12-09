@@ -11,4 +11,4 @@ TODO
 - Give 5 last entries
 - Add a parameter that permit to choose the number of printed entries
 - Verifying that the number given isn't too high (add a max number)
-
+- Identifying # and @ links into entries
