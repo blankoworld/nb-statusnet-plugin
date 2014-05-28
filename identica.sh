@@ -4,7 +4,7 @@
 
 # Copyright 2009 by Olivier DOSSMANN (alias Blankoworld)
 #
-# A copy of this plugin is available at http://git.dossmann.net/?p=nanoblogger/identica_plugin
+# A copy of this plugin is available at http://github.com/blankoworld/nb-statusnet-plugin
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,18 +19,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.If not, see <http://www.gnu.org/licenses/>.
 
-: ${IDENTICA_CMD:=`which curl`}
-: ${IDENTICA_OPTS:="-s"}
-: ${IDENTICA_USER:="blanko"}
-: ${IDENTICA_URL:="http://identi.ca/api/users/show"}
-: ${IDENTICA_FORMAT:="xml"}
-: ${IDENTICA_TITLE:="identi.ca status"}
-: ${IDENTICA_LINK:="http://identi.ca/$IDENTICA_USER"}
+: ${STATUSNET_CMD:=`which curl`}
+: ${STATUSNET_OPTS:="-s"}
+: ${STATUSNET_USER:="blanko"}
+: ${STATUSNET_URL:="https://quitter.se/api/users/show"}
+: ${STATUSNET_FORMAT:="xml"}
+: ${STATUSNET_TITLE:="quitter.se status"}
+: ${STATUSNET_LINK:="https://quitter.se/$STATUSNET_USER"}
 
-if [ "${#IDENTICA_CMD}" -ne 0 ]
+if [ "${#STATUSNET_CMD}" -ne 0 ]
 then
-  IDENTICA_STATUS=`$IDENTICA_CMD $IDENTICA_OPTS $IDENTICA_URL/$IDENTICA_USER.$IDENTICA_FORMAT | grep -E "<text>(.+)</text>" | sed "s/<[/]*text>//g"`
-  IDENTICA_BADGE="$IDENTICA_STATUS<br /><a href=\"$IDENTICA_LINK#content\" title=\"Display $IDENTICA_USER identica status\">$IDENTICA_USER</a>"
+  STATUSNET_STATUS=`$STATUSNET_CMD $STATUSNET_OPTS $STATUSNET_URL/$STATUSNET_USER.$STATUSNET_FORMAT | grep -E "<text>(.+)</text>" | sed "s/<[/]*text>//g"`
+  STATUSNET_BADGE="$STATUSNET_STATUS<br /><a href=\"$STATUSNET_LINK#content\" title=\"Display $STATUSNET_USER StatusNet status\">$STATUSNET_USER</a>"
 else
   die "$nb_plugin: $plugins_abort"
 fi
@@ -46,32 +46,32 @@ fi
 # 3. Append lines bellow (uncomment and fill accordingly) to the setting file:
 #
 	# --- Identi.ca plugin settings ---
-	#IDENTICA_CMD="curl" # program used to retrieve identi.ca status 
-	#IDENTICA_OPTS="-s" # some options of the IDENTICA_CMD program
-	#IDENTICA_URL="http://identi.ca/api/users/show" # url for having the last status
-	#IDENTICA_FORMAT="xml" # format used on identi.ca
-	#IDENTICA_LINK="http://identi.ca/$IDENTICA_USER"
-	#IDENTICA_USER="foo" # your id on identi.ca
-	#IDENTICA_TITLE="identi.ca status" # title to display on your homepage (or some else)
+	#STATUSNET_CMD="curl" # program used to retrieve identi.ca status 
+	#STATUSNET_OPTS="-s" # some options of the STATUSNET_CMD program
+	#STATUSNET_URL="https://quitter.se/api/users/show" # url for having the last status
+	#STATUSNET_FORMAT="xml" # format used on identi.ca
+	#STATUSNET_LINK="https://quitter.se/$STATUSNET_USER"
+	#STATUSNET_USER="foo" # your id on identi.ca
+	#STATUSNET_TITLE="identi.ca status" # title to display on your homepage (or some else)
 #
 # 4. Explanations:
 #
-#  IDENTICA_CMD : command used for retrieving the web page holding your status' information status
-#  IDENTICA_OPTS : list of parameters for the command (for example, the "-s" mean silent mode, no output)
-#  IDENTICA_URL : address of the page to retrieve
-#  IDENTICA_FORMAT : format of the file (could be XML, JSON or others)
-#  IDENTICA_LINK : direct link to the page holding your whole status. This is to be displayed.
-#  IDENTICA_USER : your nickname over the service called. Here:"foo".
-#  IDENTICA_TITLE : title to give to introduce your status on your home's page.
+#  STATUSNET_CMD : command used for retrieving the web page holding your status' information status
+#  STATUSNET_OPTS : list of parameters for the command (for example, the "-s" mean silent mode, no output)
+#  STATUSNET_URL : address of the page to retrieve
+#  STATUSNET_FORMAT : format of the file (could be XML, JSON or others)
+#  STATUSNET_LINK : direct link to the page holding your whole status. This is to be displayed.
+#  STATUSNET_USER : your nickname over the service called. Here:"foo".
+#  STATUSNET_TITLE : title to give to introduce your status on your home's page.
 #
 # 5. Inside the template: "templates/main_index.htm"
 #
 # Insert:
 #    <div class="sidetitle">                                                                                                       
-#      $IDENTICA_TITLE                                                                                                       
+#      $STATUSNET_TITLE                                                                                                       
 #    </div>                                                                                                                        
 #    <div class="side">                                                                                                            
-#      $IDENTICA_BADGE                                                                                                       
+#      $STATUSNET_BADGE                                                                                                       
 #    </div>
 #
 # 6. Updating
@@ -84,9 +84,9 @@ fi
 #
 #    You may want modify your badge, adding some picture or text:
 # From the original setting:
-#          "IDENTICA_BADGE="$IDENTICA_STATUS<br /><a href=\"$IDENTICA_LINK#content\" title=\"Display $IDENTICA_USER identica status\">$IDENTICA_USER</a>"
+#          "STATUSNET_BADGE="$STATUSNET_STATUS<br /><a href=\"$STATUSNET_LINK#content\" title=\"Display $STATUSNET_USER StatusNet status\">$STATUSNET_USER</a>"
 # to your own's setting (if your are a french user):
-#          "IDENTICA_BADGE="$IDENTICA_STATUS<br /><a href=\"$IDENTICA_LINK#content\" title=\"Visiter la page des status de $IDENTICA_USER\">Voir les autres statuts de $IDENTICA_USER</a>"
-# Just add some HTML code inside the variable, and if possible, other variables. And the most important for you: the "IDENTICA_STATUS" variable.
+#          "STATUSNET_BADGE="$STATUSNET_STATUS<br /><a href=\"$STATUSNET_LINK#content\" title=\"Visiter la page des status de $STATUSNET_USER\">Voir les autres statuts de $STATUSNET_USER</a>"
+# Just add some HTML code inside the variable, and if possible, other variables. And the most important for you: the "STATUSNET_STATUS" variable.
 
 

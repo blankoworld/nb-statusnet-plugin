@@ -2,31 +2,31 @@ Requirement
 -----------
 
 - install of curl (apt-get install curl ; pacman -S curl ; etc.)
-- an identi.ca account (perhaps would you display a friend ' status ?)
+- an StatusNet account (perhaps would you display a friend ' status ?)
 
-Using identica.sh
+Using statusnet.sh
 --------------------
 
 - Place this script in the user plugins directory
 - Edit your blog's conf : 
 nb -b /path/to/my/blog/ configure
 - Add this at the end of the conf : 
-# --- Identi.ca plugin settings ---
-#IDENTICA_CMD="curl" # progam used to retrieve identi.ca status 
-#IDENTICA_OPTS="-s" # some options of the IDENTICA_CMD program
-#IDENTICA_URL="http://identi.ca/api/users/show" # url for having the last status
-#IDENTICA_FORMAT="xml" # format used on identi.ca
-#IDENTICA_LINK="http://identi.ca/$IDENTICA_USER"
-IDENTICA_USER="blanko" # your id on identi.ca
-IDENTICA_TITLE="identi.ca status" # title to display on your homepage (or some else)
-- Just change the content of the IDENTICA_USER variable
-- Also the IDENTICA_TITLE, if you want
+# --- StatusNet plugin settings ---
+#STATUSNET_CMD="curl" # progam used to retrieve StatusNet status 
+#STATUSNET_OPTS="-s" # some options of the STATUSNET_CMD program
+#STATUSNET_URL="https://quitter.se/api/users/show" # url for having the last status
+#STATUSNET_FORMAT="xml" # format used on quitter.se
+#STATUSNET_LINK="https://quitter.se/$STATUSNET_USER"
+STATUSNET_USER="blanko" # your id on quitter.se
+STATUSNET_TITLE="quitter.se status" # title to display on your homepage (or some else)
+- Just change the content of the STATUSNET_USER variable
+- Also the STATUSNET_TITLE, if you want
 - Change your templates/main_index.htm file. For example add this in the menu :
 <div class="sidetitle">
-	$IDENTICA_TITLE
+	$STATUSNET_TITLE
 </div>
 <div class="side">
-	$IDENTICA_BADGE
+	$STATUSNET_BADGE
 </div>
 - Recompile your weblog : 
 nb -b /path/to/my/blog/ update main
@@ -36,5 +36,5 @@ Notes
 -----
 
 - You can use the script for anything else. Just adapt the script for your use.
-- A copy of this plugin is available at http://git.dossmann.net/?p=nanoblogger/identica_plugin
+- A copy of this plugin is available at http://github.com/blankoworld/nb-statusnet-plugin
 
